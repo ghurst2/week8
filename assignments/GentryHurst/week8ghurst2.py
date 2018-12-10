@@ -2,22 +2,25 @@
 
 #imports library
 import random
+
 #prompts user to determine what they want to do
 #t= translate into amino acids
 #r= randomly select codon
 print("Press the key T to translate a protein-coding nucleotide sequence to amino acids or press the R key to randomly draw a codon from the sequence")
-key = input()
+key = input().lower()	# DB: Using .lower() here will allow user to enter either upper or lowercase T or R.
+
 #doesn't contiune until user selects "t" or "r"
-while  key not in  ( "t","r"):
-	print("Please ensure you have selected ethier key T or R")
+while  key not in  ( "t","r"):	# DB: Good! I like this idea.
+	print("Please ensure you have selected either key T or R")
 	key = input()
+	
 #if user selects t prompts the user to enter a sequence
 if key == "t":
 	print("You have selected to translate a protein-coding nucleotide into amio acids")
-	print("Please enter your protein-coding sequence:")
+	print("Please enter your protein-coding sequence:")	# DB: Since your dictionary is for RNA sequences, should specify that's what you want (not DNA)
 	CodeSeq = input()
 #convert the input into all upper
-	CodeSeq.upper()
+	CodeSeq = CodeSeq.upper()	# DB: Need to reassign this back to CodeSeq for it to work
 #Dictonary for rna codon and animo acids
 	rna_codon = {"UUU" : "Phe", "CUU" : "Leu", "AUU" : "Ile", "GUU" : "Val",
            "UUC" : "Phe", "CUC" : "Leu", "AUC" : "Ile", "GUC" : "Val",
@@ -43,8 +46,8 @@ if key == "t":
 			break
 #Translates the sequence to amino acids
 		protein_string += rna_codon[CodeSeq[i:i+3]]
-	print("Amino Acid sequence:")
-	print( "Protein String: ", protein_string)
+	print("Amino Acid sequence:", protein_string) # DB: Just need one of these print statements
+	# print( "Protein String: ", protein_string)
 #if they have chosen r
 else:
 	print("You have selected to randomly draw a codon from the sequence")
@@ -54,4 +57,6 @@ else:
 	RandSeq = [RandomSeq[i:i+3] for i in range(0, len(RandomSeq), 3)]
 	print("Random codon from the sequence:")
 	print(random.choice(RandSeq))
+	
 
+# DB: Overall, really good. I've added some specific comments above.
